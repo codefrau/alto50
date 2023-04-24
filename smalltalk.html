@@ -39,9 +39,9 @@
 <title>Smalltalk-78</title>
 </head>
 
-<body id="body">
+<body id="body" class="fullscreen">
 
-<canvas id="canvas" width="1024" height="768"></canvas>
+<canvas id="canvas" width="606" height="808"></canvas>
 
 <p id="ui">
 
@@ -106,32 +106,23 @@ Ctrl-d  done with eval
 </p>
 
 <script>
-    let width, height, fullscreen, black, white;
+    let black, white, width, height;
     const params = new URL(window.location.href).searchParams;
-    if (params.has("alto")) {
-        width = 608;
-        height = 808;
-        fullscreen = true;
-        black = 0x3E5F66;
-        white = 0x52F0FF;
-    }
+    if (params.has("tint")) { black = 0x3E5F66; white = 0x52F0FF; }
     if (params.get("width")) width = +params.get("width");
     if (params.get("height")) height = +params.get("height");
-    if (params.has("fullscreen")) fullscreen = true;
     if (params.has("black")) black = +("0xFF" + params.get("black"));
     if (params.has("white")) white = +("0xFF" + params.get("white"));
 
     if (width) canvas.width = width;
     if (height) canvas.height = height;
-    if (fullscreen) {
-        body.classList.add("fullscreen");
-        if (black) body.style.backgroundColor = "#" + black.toString(16).slice(-6);
-    }
+    if (black) body.style.backgroundColor = "#" + black.toString(16).slice(-6);
 
     module("main").requires("Smalltalk78").toRun(function() {
         if (black) NT.BLACK = 0xFF000000 | ((black & 0xFF0000) >> 16) | (black & 0xFF00) | ((black & 0xFF) << 16);
         if (white) NT.WHITE = 0xFF000000 | ((white & 0xFF0000) >> 16) | (white & 0xFF00) | ((white & 0xFF) << 16);
-        Smalltalk78.run("simkit.st78", canvas);
+        Smalltalk78.fresh = true; // force fresh image loading
+        Smalltalk78.run("altodemo.st78", canvas);
     });
 
     helpbutton.onclick = function() {
