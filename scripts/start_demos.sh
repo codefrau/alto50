@@ -36,5 +36,5 @@ i3-msg 'workspace 8:Smalltalk;'
 cd /home/alto/alto50/
 python -m http.server&
 sleep 8
-chromium-browser --start-fullscreen http://localhost:8000/smalltalk.html&
+chromium-browser --start-fullscreen 'http://localhost:8000/smalltalk.html#tint&3buttonmouse' &
 

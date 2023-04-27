@@ -107,7 +107,8 @@ Ctrl-d  done with eval
 
 <script>
     let black, white, width, height;
-    const params = new URL(window.location.href).searchParams;
+    const rawParams = window.location.search.slice(1) || window.location.hash.slice(1);
+    const params = new URLSearchParams(rawParams);
     if (params.has("tint")) { black = 0x3E5F66; white = 0x52F0FF; }
     if (params.get("width")) width = +params.get("width");
     if (params.get("height")) height = +params.get("height");
