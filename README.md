@@ -1,6 +1,6 @@
 # Alto at 50 replica instructions
 
-The Alto display replicas run the ContrAlto simulator developed and Smalltalk-78. 
+The Alto display replicas run the ContrAlto simulator and Smalltalk-78. 
 
 The various files (including ContrAlto and Smalltalk-78) required to run the display replicas are in [this repository](https://github.com/codefrau/alto50/).
 
